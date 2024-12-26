@@ -1,8 +1,18 @@
 {
-  "name": "ZMK Development",
+  "name": "ZMK Studio Playground",
   "dockerFile": "Dockerfile",
-  "runArgs": ["--security-opt", "label=disable"],
-  "mounts": ["type=bind,source=../zmk,target=/opt/zmk"],
+  "runArgs": [
+    "--security-opt",
+    "label=disable",
+    // キーボードをdocker内で使用できるように設定
+    "--device=/dev/ttyACM0"
+  ],
+  "mounts": [
+    "type=bind,source=${localWorkspaceFolder}/zmk,target=/opt/zmk"
+  ],
   "containerEnv": {},
-  "forwardPorts": [5173, 6006]
+  "forwardPorts": [
+    5173,
+    6006
+  ]
 }
